@@ -1,26 +1,28 @@
 package Server;
+import java.net.*;
+public class MultiServer {
 
-public class MultiServer{
+    public void start() {
 
-public void start(){
+        try {
 
-    try{
-
-        ServerSocket ServerSocket = new ServerSocket(6789);
-        for(;;)
-        {
-            System.out.println("1 Server in attesa ...");
-            Socket socket = ServerSocket.accept();
-            System.out.println("3 Server socket "+ socket);
-            ServerThread ServerThread = new ServerThread(socket);
-            ServerThread.start();
+            ServerSocket serverSocket = new ServerSocket(6789);
+            for (;;) {
+                System.out.println("1 Server in attesa ...");
+                Socket socket = serverSocket.accept();
+                System.out.println("3 Server socket " + socket);
+                ServerThread serverThread = new ServerThread(socket, serverSocket);
+                serverThread.start();
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println("Errore durante l'istanza del server !");
+            System.exit(1);
         }
     }
-    catch(Exception e){
-        System.out.println(e.getMessage());
-        System.out.println("Errore durante l'istanza del server !");
-        System.exit(1);
-    }
-}
 
+    public static void main(String [] args){
+        MultiServer tcpServer = new MultiServer();
+        tcpServer.start();
+    }
 }
