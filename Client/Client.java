@@ -51,7 +51,7 @@ public class Client {
             stringRicevutaDalServer = inDalServer.readLine();
             System.out.println("7 ... risposta dal server " + '\n' + stringRicevutaDalServer);
 
-            if (stringUtente.equals("FINE")) {
+            if (stringUtente.equals("STOP")) {
                 System.out.println("8 CLIENT: termina elaborazione e chiude connessione");
                 mioSocket.close();
                 break;

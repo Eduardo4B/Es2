@@ -64,5 +64,9 @@ public class ServerThread extends Thread{
         System.out.println("9 Chiusura socket" + client);
 
         client.close();
+
+        if(stringRicevuta.equals("FINE")){
+            server.close();
+        }
     }
 }
